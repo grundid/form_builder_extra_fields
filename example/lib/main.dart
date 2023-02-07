@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      supportedLocales: FormBuilderLocalizations.delegate.supportedLocales,
+      supportedLocales: FormBuilderLocalizations.supportedLocales,
       home: const MyHomePage(),
     );
   }
