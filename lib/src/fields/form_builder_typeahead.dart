@@ -259,6 +259,9 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
 
   final ScrollController? scrollController;
 
+  /// Decides if only values from the select list will be saved in the form field
+  final bool allowOnlyValuesFromSelectlist;
+
   /// Creates text field that auto-completes user input from a list of items
   FormBuilderTypeAhead({
     Key? key,
@@ -273,6 +276,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
     required this.itemBuilder,
     required this.suggestionsCallback,
     T? initialValue,
+    this.allowOnlyValuesFromSelectlist = false,
     ValueChanged<T?>? onChanged,
     ValueTransformer<T?>? valueTransformer,
     VoidCallback? onReset,
@@ -378,21 +382,23 @@ class FormBuilderTypeAheadState<T>
     super.initState();
     _typeAheadController = widget.controller ??
         TextEditingController(text: _getTextString(initialValue));
-    // _typeAheadController.addListener(_handleControllerChanged);
+    if (!widget.allowOnlyValuesFromSelectlist) {
+      _typeAheadController.addListener(_handleControllerChanged);
+    }
   }
 
-  // void _handleControllerChanged() {
-  // Suppress changes that originated from within this class.
-  //
-  // In the case where a controller has been passed in to this widget, we
-  // register this change listener. In these cases, we'll also receive change
-  // notifications for changes originating from within this class -- for
-  // example, the reset() method. In such cases, the FormField value will
-  // already have been set.
-  //   if (_typeAheadController.text != value) {
-  //     didChange(_typeAheadController.text as T);
-  //   }
-  // }
+  void _handleControllerChanged() {
+    // Suppress changes that originated from within this class.
+
+    // In the case where a controller has been passed in to this widget, we
+    // register this change listener. In these cases, we'll also receive change
+    // notifications for changes originating from within this class -- for
+    // example, the reset() method. In such cases, the FormField value will
+    // already have been set.
+    if (_typeAheadController.text != value) {
+      didChange(_typeAheadController.text as T);
+    }
+  }
 
   @override
   void didChange(T? value) {
