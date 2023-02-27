@@ -333,7 +333,13 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
                         color: theme.disabledColor,
                       ),
                 focusNode: state.effectiveFocusNode,
-                decoration: state.decoration,
+                decoration: state.decoration.copyWith(
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        state.didChange(null);
+                      },
+                      icon: Icon(Icons.clear)),
+                ),
               ),
               // TODO HACK to satisfy strictness
               suggestionsCallback: suggestionsCallback,
