@@ -114,10 +114,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_datetime_picker_bdaya
-      sha256: "137ac5f6c967c4fa9a029e6d8599ec3b301480b7269b92e6938607f1ab2e8288"
+      sha256: a7be6b8de4f97d2a2e2ad8d6ab1076a8149b0ce0b34110309544e91810aff98d
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0"
+    version: "3.0.1"
   flutter_form_builder:
     dependency: "direct main"
     description:

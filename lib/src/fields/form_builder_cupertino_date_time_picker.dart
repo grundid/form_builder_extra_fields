@@ -61,8 +61,8 @@ class FormBuilderCupertinoDateTimePicker extends FormBuilderField<DateTime> {
   final DateCancelledCallback? onCancel;
   final DateChangedCallback? onConfirm;
   final DateFormat? format;
-  final DatePickerTheme? datePickerTheme;
-  final DatePickerTheme? timePickerTheme;
+  final DatePickerThemeBdaya? datePickerTheme;
+  final DatePickerThemeBdaya? timePickerTheme;
   final DateTime? firstDate;
   final DateTime? lastDate;
   final Locale? locale;
@@ -254,7 +254,7 @@ class FormBuilderCupertinoDateTimePickerState extends FormBuilderFieldState<
 
   Future<DateTime?> _showDatePicker(
       BuildContext context, DateTime? currentValue) {
-    return DatePicker.showDatePicker(
+    return DatePickerBdaya.showDatePicker(
       context,
       showTitleActions: true,
       minTime: widget.firstDate ?? DateTime(1900),
@@ -270,7 +270,7 @@ class FormBuilderCupertinoDateTimePickerState extends FormBuilderFieldState<
   Future<TimeOfDay?> _showTimePicker(
       BuildContext context, DateTime? currentValue) async {
     final timePicker = widget.alwaysUse24HourFormat
-        ? DatePicker.showTimePicker(
+        ? DatePickerBdaya.showTimePicker(
             context,
             showTitleActions: true,
             currentTime: currentValue,
@@ -278,7 +278,7 @@ class FormBuilderCupertinoDateTimePickerState extends FormBuilderFieldState<
             locale: _localeType(),
             theme: widget.timePickerTheme,
           )
-        : DatePicker.showTime12hPicker(
+        : DatePickerBdaya.showTime12hPicker(
             context,
             showTitleActions: true,
             currentTime: currentValue,
